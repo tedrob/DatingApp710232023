@@ -1,0 +1,3 @@
+dotnet_naming_rule.private_members_with_underscore.symboles = private_fields
+dotnet_naming_rule.private_members_with_underscore.style = private_underscore
+dotnet_naming_rule.private_members_with_underscore.style = private_underscore
