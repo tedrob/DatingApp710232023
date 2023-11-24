@@ -53,7 +53,6 @@ public class UsersController : BaseApiController
         if (await _userRepository.SaveAllAsync()) return NoContent();
 
         return BadRequest("Failed to update user");
-
     }
 
     [HttpPost("add-photo")]
@@ -80,7 +79,8 @@ public class UsersController : BaseApiController
         if (await _userRepository.SaveAllAsync())
         {
             return CreatedAtAction(nameof(GetUser),
-                new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
+                new { username = user.UserName },
+                 _mapper.Map<PhotoDto>(photo));
         }
 
         return BadRequest("Problem adding photo");
@@ -112,7 +112,7 @@ public class UsersController : BaseApiController
     public async Task<ActionResult> DeletePhoto(int photoId)
     {
         var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
-        
+
         var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
 
         if (photo == null) return NotFound();
