@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class Seed
+    public static class Seed
     {
         public static async Task SeedUsers(DataContext context)
         {
@@ -14,7 +14,7 @@ namespace API.Data
 
             var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
 
-            var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+            _ = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
 
             var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
 

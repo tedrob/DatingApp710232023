@@ -1,15 +1,10 @@
-﻿using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
-using API.Data;
-using API.DTOs;
+﻿using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 [Authorize]
@@ -30,9 +25,7 @@ public class UsersController : BaseApiController
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
     {
-        var users = await _userRepository.GetMembersAsync();
-
-        return Ok(users);
+        return Ok( await _userRepository.GetMembersAsync());
     }
 
     [HttpGet("{username}")] // /spi/users/2
@@ -93,13 +86,13 @@ public class UsersController : BaseApiController
 
         if (user == null) return NotFound();
 
-        var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+        var photo = user.Photos.Find(x => x.Id == photoId);
 
         if (photo == null) return NotFound();
 
         if (photo.IsMain) return BadRequest("This is already your main photo");
 
-        var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
+        var currentMain = user.Photos.Find(x => x.IsMain);
         if (currentMain != null) currentMain.IsMain = false;
         photo.IsMain = true;
 

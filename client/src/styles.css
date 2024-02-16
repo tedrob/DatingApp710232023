@@ -52,3 +52,5 @@
 .gallery {
   height: 600px;
 }
+
+.ngx-gallery { display: inline-block; margin-bottom: 20px;}
