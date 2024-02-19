@@ -6,7 +6,6 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 @NgModule({
   declarations: [],
@@ -20,7 +19,6 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     NgxSpinnerModule.forRoot({
       type: 'line-scale-party'
     }),
-    NgxGalleryModule,
     FileUploadModule,
     BsDatepickerModule.forRoot(),
   ],
@@ -29,7 +27,6 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     ToastrModule,
     TabsModule,
     NgxSpinnerModule,
-    NgxGalleryModule,
     FileUploadModule,
     BsDatepickerModule
   ]
