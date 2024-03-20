@@ -30,6 +30,8 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     HomeComponent,
     RegisterComponent,
     MemberListComponent,
+    MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
     TestErrorComponent,
@@ -48,6 +51,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     PhotoEditorComponent,
     TextInputComponent,
     DatePickerComponent,
+    MemberMessagesComponent,
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,

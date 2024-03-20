@@ -1,24 +1,19 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
-import { TabDirective, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
-import { TimeagoModule } from 'ngx-timeago';
+import { GalleryItem, ImageItem } from 'ng-gallery';
 import { Member } from 'src/app/_models/member';
-import { MemberMessagesComponent } from '../member-messages/member-messages.component';
 import { MessageService } from 'src/app/_services/message.service';
 import { Message } from 'src/app/_models/message';
 import { PresenceService } from 'src/app/_services/presence.service';
 import { AccountService } from 'src/app/_services/account.service';
 import { take } from 'rxjs';
 import { User } from 'src/app/_models/user';
+import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-member-detail',
-  standalone: true,
   templateUrl: './member-detail.component.html',
   styleUrls: ['./member-detail.component.css'],
-  imports: [CommonModule, TabsModule, GalleryModule, TimeagoModule, MemberMessagesComponent]
 })
 export class MemberDetailComponent implements OnInit, OnDestroy {
   @ViewChild('memberTabs', { static: true }) memberTabs?: TabsetComponent;
