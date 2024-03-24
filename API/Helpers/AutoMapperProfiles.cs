@@ -9,10 +9,14 @@ namespace API.Helpers
     {
         public AutoMapperProfiles()
         {
+            string currentUserName = null;
             CreateMap<AppUser, MemberDto>()
                 .ForMember(dest => dest.PhotoUrl,
                     opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url))
-                    .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()))
+                .ForMember(dest => dest.Photos, opt => opt.MapFrom(src =>
+                    src.Photos.Where(p => p.IsApproved ||
+                    p.AppUser.UserName.ToLower() == currentUserName)));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, AppUser>();
             CreateMap<RegisterDto, AppUser>();
@@ -24,7 +28,6 @@ namespace API.Helpers
             CreateMap<DateTime, DateTime>().ConvertUsing(d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
             CreateMap<DateTime?, DateTime?>().ConvertUsing(d => d.HasValue ?
                 DateTime.SpecifyKind(d.Value, DateTimeKind.Utc) : null);
-
         }
     }
 }

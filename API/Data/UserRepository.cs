@@ -18,12 +18,16 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<MemberDto> GetMemberAsync(string username)
+        public async Task<MemberDto> GetMemberAsync(string username, bool isCurrentUser)
         {
-            return await _context.Users
+            var query = _context.Users
                 .Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .SingleOrDefaultAsync();
+                .AsQueryable();
+
+            if (isCurrentUser) query = query.IgnoreQueryFilters();
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
@@ -48,18 +52,21 @@ namespace API.Data
                 query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider),
                 userParams.PageNumber, 
                 userParams.PageSize);
-        }
-
-        public async Task<IEnumerable<AppUser>> GetUserAsync()
-        {
-            return await _context.Users
-                .Include(p => p.Photos)
-                .ToListAsync();
-        }
+                
+        }        
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<AppUser> GetUserByPhotoId(int photoId)
+        {
+            return await _context.Users
+                .Include(p => p.Photos)
+                .IgnoreQueryFilters()
+                .Where(p => p.Photos.Any(p => p.Id == photoId))
+                .FirstOrDefaultAsync();
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
@@ -74,6 +81,13 @@ namespace API.Data
             return await _context.Users
                 .Where(x => x.UserName == username)
                 .Select(x => x.Gender).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<AppUser>> GetUserAsync()
+        {
+            return await _context.Users
+                .Include(p => p.Photos)
+                .ToListAsync();
         }
 
         public void Update(AppUser user)
