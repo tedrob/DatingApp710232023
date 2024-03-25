@@ -94,7 +94,7 @@ namespace API.Controllers
         [HttpPost("reject-photo/photoId")]
         public async Task<ActionResult> RejectPhoto(int photoId)
         {
-            var photo = await _uow.PhotoRepository.GetPhotoById(photoId);
+            var photo = await _uow.PhotoRepository.GetPhotoById(photoId);            
 
             if (photo.PublicId != null)
             {

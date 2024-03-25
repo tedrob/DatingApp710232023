@@ -45,7 +45,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{username}")] // /spi/users/2
+        [HttpGet("{username}")] // /spi/users/2        
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             var currentUsername = User.GetUsername();
