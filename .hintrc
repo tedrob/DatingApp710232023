@@ -13,5 +13,15 @@
     ],
     "button-type": "off",
     "axe/aria": "off"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 122",
+    "not chrome <= 122",
+    "not edge <= 122",
+    "not firefox <= 123",
+    "not safari <= 17.4",
+    "not samsung <= 23"
+  ]
 }
