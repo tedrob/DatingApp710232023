@@ -1,4 +1,4 @@
-name: cdocker-push
+name: docker-push
 
 on:
   workflow_dispatch:
