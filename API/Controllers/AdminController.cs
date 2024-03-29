@@ -72,7 +72,7 @@ namespace API.Controllers
         }
 
         [Authorize(Policy = "ModeratePhotoRole")]
-        [HttpPost("approve_photo/{photoId}")]
+        [HttpPost("approve-photo/{photoId}")]
         public async Task<ActionResult> ApprovePhoto(int photoId)
         {
             var photo = await _uow.PhotoRepository.GetPhotoById(photoId);
