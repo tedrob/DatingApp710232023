@@ -1,19 +1,18 @@
-# fly.toml app configuration file generated for da-coursetr-106 on 2024-04-01T00:20:51-04:00
+# fly.toml app configuration file generated for da-course-106 on 2024-04-03T20:38:35-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'da-coursetr-106'
+app = 'da-course-106'
 primary_region = 'ord'
 
 [build]
   image = 'tedr/datingapp:latest'
 
 [env]
-  ASPNETCORE_URLS="http://+:8080"
-  CloudinarySettings__CloudName="dsv721few"
-  CloudinarySettings__ApiKey="596336822472499"
-
+  ASPNETCORE_URLS = 'http://+:8080'
+  CloudinarySettings__ApiKey = '596336822472499'
+  CloudinarySettings__CloudName = 'dsv721few'
 
 [http_service]
   internal_port = 8080
